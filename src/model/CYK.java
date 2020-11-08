@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class CYK {
 		
 	String[][] matriz;
@@ -48,7 +50,7 @@ public class CYK {
 		for (int i = 0; i < gramatica.length; i++) {
 			for (int j = 0; j < gramatica[i].length; j++) {
 				if(gramatica[i][j].contentEquals(a)) {
-					generadores +=gramatica[i][0]+"";
+					generadores +=gramatica[i][0]+",";
 				}
 			}			
 		}
@@ -58,6 +60,22 @@ public class CYK {
 			return generadores;
 		}
 		
+	}
+	
+	public ArrayList<String> buscar(String[] a) {
+		ArrayList<String> generadores=new ArrayList<String>();
+		String cadena="";
+		for (int k = 0; k < a.length; k++) {
+			for (int i = 0; i < gramatica.length; i++) {
+				for (int j = 0; j < gramatica[i].length; j++) {
+					if(gramatica[i][j].contentEquals(a[k])) {
+						cadena+=gramatica[i][j];
+					}
+				}
+				generadores.add(cadena);
+			}
+		}
+		return generadores;	
 	}
 	
 	
