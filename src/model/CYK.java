@@ -48,7 +48,7 @@ public class CYK {
 	public String buscar(String a) {
 		String generadores="";
 		for (int i = 0; i < gramatica.length; i++) {
-			for (int j = 0; j < gramatica[i].length; j++) {
+			for (int j = 1; j < gramatica[i].length; j++) {
 				if(gramatica[i][j].contentEquals(a)) {
 					generadores +=gramatica[i][0]+",";
 				}
