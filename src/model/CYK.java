@@ -10,7 +10,7 @@ public class CYK {
 		
 	}
 	
-	public String algoritmoCYK(String[][] gramatica, String[] cadena) {
+	public boolean algoritmoCYK(String[][] gramatica, String[] cadena) {
 		matriz= new String[cadena.length+1][cadena.length+1];
 		this.gramatica=gramatica;
 		for (int j = 0; j < cadena.length; j++) {
@@ -33,15 +33,21 @@ public class CYK {
 			}
 		}
 		
-		for (int x=0; x < matriz.length; x++) {
+		/*for (int x=0; x < matriz.length; x++) {
 			  System.out.print("|");
 			  for (int y=0; y < matriz[x].length; y++) {
 			    System.out.print (matriz[x][y]);
 			    if (y!=matriz[x].length-1) System.out.print("\t");
 			  }
 			  System.out.println("|");
+		}*/
+		
+		if(matriz[1][matriz.length-1].contains("S")) {
+			return true;
+		}else {
+			return false;
 		}
-		return null;
+		
 	}
 	
 	public String buscar(String a) {

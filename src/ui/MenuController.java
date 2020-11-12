@@ -30,7 +30,8 @@ public class MenuController {
 
     @FXML
     private TextField tamañoGramatica;
-
+    
+    
     
     @FXML
     void calcularCYK(ActionEvent event) throws IOException {
@@ -47,8 +48,15 @@ public class MenuController {
 		}
     	String word= palabra.getText();
     	String[] symbols = word.split("");
-    	algoritmo.algoritmoCYK(gramaticaMatriz, symbols);
-    	
+    	boolean flag=algoritmo.algoritmoCYK(gramaticaMatriz, symbols);
+    	areaGramatica.setText("");
+    	tamañoGramatica.setText("");
+    	palabra.setText("");
+    	if(flag==true) {
+    		System.out.println("acabamos perro");
+    	}else {
+    		System.out.println("F");
+    	}
     }
 
 }
