@@ -26,7 +26,6 @@ public class CYK {
 							
 			}
 		}
-		//calcularBusqueda(2,cadena.length);
 		
 		for (int j = 1; j < matriz.length; j++) {
 			for (int i = 2; i < matriz.length; i++) {
@@ -49,7 +48,7 @@ public class CYK {
 		String generadores="";
 		for (int i = 0; i < gramatica.length; i++) {
 			for (int j = 1; j < gramatica[i].length; j++) {
-				if(gramatica[i][j].contentEquals(a)) {
+				if(gramatica[i][j]!=null&&gramatica[i][j].contentEquals(a)) {
 					generadores +=gramatica[i][0]+"";
 				}
 			}			
@@ -64,14 +63,27 @@ public class CYK {
 	
 	public String buscar(ArrayList<String> a) {
 		String newCad = "";
+		ArrayList<String> s= new ArrayList<String>();
 		for (int k = 0; k < a.size(); k++) {
 			for (int i = 0; i < gramatica.length; i++) {
 				for (int j = 0; j < gramatica[i].length; j++) {
-					if(gramatica[i][j].contentEquals(a.get(k))) {						
-						newCad+=gramatica[i][0];
+					if(gramatica[i][j]!=null&&gramatica[i][j].contentEquals(a.get(k))) {
+						boolean flag=true;
+						for (int j2 = 0; j2 < s.size(); j2++) {
+							if(s.get(j2).equals(gramatica[i][0])) {
+								flag=false;
+							}
+						}
+						if(flag==true) {
+							s.add(gramatica[i][0]);
+						}
+						
 					}
 				}
 			}
+		}
+		for (int i = 0; i < s.size(); i++) {
+			newCad+=s.get(i);
 		}
 		if(newCad.equals("")) {
 			return "vacio";
@@ -91,13 +103,11 @@ public class CYK {
 					String[]combi=matriz[i][k].split("");
 					for (int k2 = 0; k2 < combi.length; k2++) {
 						casos.add(combi[k2]+matriz[i+k][j-k]);
-						System.out.println(combi[k2]+matriz[i+k][j-k]);
 					}
 				}else if(matriz[i][k].length()==1 && matriz[i+k][j-k].length()>1) {
 					String[]combi=matriz[i+k][j-k].split("");
 					for (int k2 = 0; k2 < combi.length; k2++) {
 						casos.add(matriz[i][k]+combi[k2]);
-						System.out.println(matriz[i][k]+combi[k2]);
 					}
 				}else if(matriz[i][k].length()>1 && matriz[i+k][j-k].length()>1) {
 					String[]combi=matriz[i+k][j-k].split("");
@@ -105,17 +115,14 @@ public class CYK {
 					for (int k2 = 0; k2 < combi.length; k2++) {
 						for (int l = 0; l < combi2.length; l++) {
 							casos.add(combi2[l]+combi[k2]);
-							System.out.println(combi2[l]+combi[k2]);
 						}
 					}
 				}else {
 					casos.add(matriz[i][k]+matriz[i+k][j-k]);
-					System.out.println(matriz[i][k]+matriz[i+k][j-k]);
 				}
 				
 				
 			}
-			System.out.println(casos.size() +"/");
 			matriz[i][j]=buscar(casos);
 		}
 	}
