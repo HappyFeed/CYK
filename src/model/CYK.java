@@ -26,13 +26,13 @@ public class CYK {
 							
 			}
 		}
-		calcularBusqueda(2,cadena.length);
+		//calcularBusqueda(2,cadena.length);
 		
-		/*for (int j = 1; j < matriz.length; j++) {
+		for (int j = 1; j < matriz.length; j++) {
 			for (int i = 2; i < matriz.length; i++) {
 				calcularBusqueda(i,cadena.length);
 			}
-		}*/
+		}
 		
 		for (int x=0; x < matriz.length; x++) {
 			  System.out.print("|");
@@ -64,11 +64,11 @@ public class CYK {
 	
 	public String buscar(ArrayList<String> a) {
 		String newCad = "";
-		for (int k = 1; k < a.size(); k++) {
+		for (int k = 0; k < a.size(); k++) {
 			for (int i = 0; i < gramatica.length; i++) {
 				for (int j = 0; j < gramatica[i].length; j++) {
-					if(gramatica[i][j].contentEquals(a.get(k))) {
-						newCad+=gramatica[i][j];
+					if(gramatica[i][j].contentEquals(a.get(k))) {						
+						newCad+=gramatica[i][0];
 					}
 				}
 			}
