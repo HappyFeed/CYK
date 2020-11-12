@@ -47,10 +47,11 @@ public class CYK {
 	
 	public String buscar(String a) {
 		String generadores="";
+		System.out.println("estoy aqui");
 		for (int i = 0; i < gramatica.length; i++) {
 			for (int j = 1; j < gramatica[i].length; j++) {
 				if(gramatica[i][j].contentEquals(a)) {
-					generadores +=gramatica[i][0]+",";
+					generadores +=gramatica[i][0]+"";
 				}
 			}			
 		}
@@ -64,15 +65,17 @@ public class CYK {
 	
 	public ArrayList<String> buscar(String[] a) {
 		ArrayList<String> generadores=new ArrayList<String>();
-		String cadena="";
-		for (int k = 0; k < a.length; k++) {
+		System.out.println("estoy aqui");
+		String cadena=a[0];
+		String newCad = "";
+		for (int k = 1; k < a.length; k++) {
 			for (int i = 0; i < gramatica.length; i++) {
 				for (int j = 0; j < gramatica[i].length; j++) {
 					if(gramatica[i][j].contentEquals(a[k])) {
-						cadena+=gramatica[i][j];
+						newCad+=gramatica[i][j] + cadena;
 					}
 				}
-				generadores.add(cadena);
+				generadores.add(newCad);
 			}
 		}
 		return generadores;	
