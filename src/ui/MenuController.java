@@ -49,14 +49,6 @@ public class MenuController {
     	String[] symbols = word.split("");
     	algoritmo.algoritmoCYK(gramaticaMatriz, symbols);
     	
-    	for (int x=0; x < gramaticaMatriz.length; x++) {
-			  System.out.print("|");
-			  for (int y=0; y < gramaticaMatriz[x].length; y++) {
-			    System.out.print (gramaticaMatriz[x][y]);
-			    if (y!=gramaticaMatriz[x].length-1) System.out.print("\t");
-			  }
-			  System.out.println("|");
-		}
     }
 
 }
