@@ -1,6 +1,8 @@
 package ui;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -9,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.CYK;
 
@@ -31,10 +34,15 @@ public class MenuController {
     @FXML
     private TextField tamañoGramatica;
     
-    
+    @FXML
+    void initialize() throws FileNotFoundException {
+    	FileInputStream input = new FileInputStream("pics/front.jpg");
+    	Image image1 = new Image(input);
+    	picRespuesta.setImage(image1);
+    }
     
     @FXML
-    void calcularCYK(ActionEvent event) throws IOException {
+    void calcularCYK(ActionEvent event) throws IOException {  	
     	algoritmo = new CYK();
     	String gr= areaGramatica.getText();
     	String[] gramatica = gr.split("\n");
@@ -53,9 +61,13 @@ public class MenuController {
     	tamañoGramatica.setText("");
     	palabra.setText("");
     	if(flag==true) {
-    		System.out.println("acabamos perro");
+    		FileInputStream input = new FileInputStream("pics/laGenera1.jpg");
+        	Image image1 = new Image(input);
+        	picRespuesta.setImage(image1);
     	}else {
-    		System.out.println("F");
+        	FileInputStream input = new FileInputStream("pics/noLaGenera.jpg");
+        	Image image1 = new Image(input);
+        	picRespuesta.setImage(image1);
     	}
     }
 
